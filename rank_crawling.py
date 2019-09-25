@@ -37,15 +37,15 @@ def naver_trend():
         time.sleep(3) # 3초 딜레이
         os.system('cls') # 화면 클리어
         print('화면 클리어')
-        return rank_data
-    NaverRank.objects.all().delete()
-    print('삭제완료')
-    rank_data_dict = naver_trend()  # naver_trend 크롤링 돌아가는 함수 부분
-    # for n, t in rank_data_dict.items():
-    for n, t in rank_data_dict.items():
-        print(n, t)
-        NaverRank(rank_num=n + 1, rank_title=t).save()
-    return print('완료')
+        # return rank_data
+        NaverRank.objects.all().delete()
+        print('삭제완료')
+        rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
+        # for n, t in rank_data_dict.items():
+        for n, t in rank_data_dict.items():
+            print(n, t)
+            NaverRank(rank_num=n + 1, rank_title=t).save()
+        return print('완료')
 
 
 
