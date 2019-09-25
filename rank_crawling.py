@@ -13,14 +13,12 @@ django.setup()
 from rank.models import NaverRank, DaumRank, GoogleRank
 
 
-# #naver
+#naver
 def naver_trend():
     # naver로 부터 text, headers, ststus, ok 정보를 받아 req 오브젝트에 저장
     req = requests.get('https://www.naver.com/')
     html = req.text
 
-    # 노란색 글씨
-    C_YELLOW = '\033[33m'
     rank_data = {}
     while True:
         soup = BeautifulSoup(html, 'html.parser')
@@ -32,22 +30,23 @@ def naver_trend():
             '#PM_ID_ct > div.header > div.section_navbar > div.area_hotkeyword.PM_CL_realtimeKeyword_base > div.ah_roll.PM_CL_realtimeKeyword_rolling_base > div > ul > li > a > span.ah_r'
         )
         for i in range(20): # 20위 까지 받기 위해서
-            rank_data[i] = {rank_num[i].text: rank_title[i].text}
-            if len(rank_num[i].text) == 1: # 1~9의 수는 앞에 0을 붙이게끔
-                cprint('0' + str(rank_num[i].text) + ' ' + rank_title[i].text, 'yellow') # ex) 01 조국 노란색으로 출력
-            else: # 그렇지않으면 그냥 출력
-                cprint(rank_num[i].text + ' ' + rank_title[i].text, 'yellow') # 10 조국 노란색으로 출력
-        time.sleep(5) # 5초 마다 반복
+            # rank_data[i] = rank_title[i].text # rank_num[i].text.zfill(2):
+            rank_data[i] = rank_title[i].text # rank_num[i].text.zfill(2):
+            cprint(str(rank_num[i].text.zfill(2)) + ' ' + rank_title[i].text, 'yellow') # ex) 01 조국 노란색으로 출력
+
+        time.sleep(3) # 3초 딜레이
         os.system('cls') # 화면 클리어
+        print('화면 클리어')
         return rank_data
-
-
-if __name__ == '__main__':
     NaverRank.objects.all().delete()
-    rank_data_dict = naver_trend() # naver_trend 크롤링 돌아가는 함수 부분
+    print('삭제완료')
+    rank_data_dict = naver_trend()  # naver_trend 크롤링 돌아가는 함수 부분
+    # for n, t in rank_data_dict.items():
     for n, t in rank_data_dict.items():
-        NaverRank(rank_num=n+1, rank_title=t).save()
-    print('Naver 업로드 완료')
+        print(n, t)
+        NaverRank(rank_num=n + 1, rank_title=t).save()
+    return print('완료')
+
 
 
 # daum
@@ -55,8 +54,6 @@ def daum_trend():
     req = requests.get('https://www.daum.net/')
     html = req.text
 
-    # 노란색 글씨
-    C_YELLOW = '\033[33m'
     rank_data = {}
     while True:
         soup = BeautifulSoup(html, 'html.parser')
@@ -68,12 +65,8 @@ def daum_trend():
             '#mArticle > div.cmain_tmp > div.section_media > div.hot_issue.issue_mini > div.hotissue_mini > ol > li > div > div > span.num_pctop > span'
         )
         for i in range(10):  # 20위 까지 받기 위해서
-            rank_data[i] = {rank_num[i].text: rank_title[i].text}
-            cprint(rank_num[i].text + ' ' + rank_title[i].text, 'yellow')  # 10 조국 노란색으로 출력
-            # if len(rank_num[i].text) == 1:  # 1~9의 수는 앞에 0을 붙이게끔
-            #     cprint('0' + str(rank_num[i].text) + ' ' + rank_title[i].text, 'yellow')  # ex) 01 조국 노란색으로 출력
-            # else:  # 그렇지않으면 그냥 출력
-            #     cprint(rank_num[i].text + ' ' + rank_title[i].text, 'yellow')  # 10 조국 노란색으로 출력
+            rank_data[i] = rank_title[i].text
+            cprint(rank_num[i].text.zfill(3) + ' ' + rank_title[i].text, 'yellow')  # 10 조국 노란색으로 출력
         time.sleep(5)  # 5초 마다 반복
         os.system('cls')  # 화면 클리어
         return rank_data
@@ -89,29 +82,18 @@ if __name__ == '__main__':
 
 # # google
 # def google_trend():
-#     req = requests.get('https://www.daum.net/')
-#     html = req.text
-#
-#     # 노란색 글씨
-#     C_YELLOW = '\033[33m'
+#     from selenium import webdriver
 #     rank_data = {}
+#     # 다운 받은 chromdriver의 위치를 지정해준다.
+#     driver = webdriver.Chrome('C:\chromedriver.exe') # 정상작동
+#     driver.implicitly_wait(3)
+#     driver.get('https://trends.google.co.kr/trends/trendingsearches/realtime?geo=US&category=all')
 #     while True:
-#         soup = BeautifulSoup(html, 'html.parser')
-#
-#         rank_title = soup.select(
-#             '#feed-item > div.details-wrapper > div.details > div.details-top > div > span > a'
-#         )
-#         print(rank_title)
-#         rank_num = soup.select(
-#             '#feed-item-US_lnk_TbVm5AAwAAAr4M_en > div.details-wrapper > div'
-#         )
-#         # for i in range(20):
-#         #     rank_data[i] = {rank_num[i].text: rank_title[i].text}
-#         #     cprint(rank_num[i].text + ' ' + rank_title[i].text, 'yellow')
-#             # if len(rank_num[i].text) == 1:  # 1~9의 수는 앞에 0을 붙이게끔
-#             #     cprint('0' + str(rank_num[i].text) + ' ' + rank_title[i].text, 'yellow')  # ex) 01 조국 노란색으로 출력
-#             # else:  # 그렇지않으면 그냥 출력
-#             #     cprint(rank_num[i].text + ' ' + rank_title[i].text, 'yellow')  # 10 조국 노란색으로 출력
+#         rank_num = driver.find_elements_by_class_name("index")
+#         rank_title = driver.find_elements_by_class_name("title")
+#         for i in range(10):
+#             rank_data[i] = rank_title[i].text
+#             cprint(str(rank_num[i].text.zfill(2)) + ' ' + rank_title[i].text, 'yellow')
 #         time.sleep(5)  # 5초 마다 반복
 #         os.system('cls')  # 화면 클리어
 #         return rank_data
@@ -123,7 +105,6 @@ if __name__ == '__main__':
 #     for n, t in rank_data_dict.items():
 #         GoogleRank(rank_num=n + 1, rank_title=t).save()
 #     print('Google 업로드 완료')
-
 
 naver_trend()
 daum_trend()

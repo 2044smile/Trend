@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+
+    </style>
+    <title>index</title>
+</head>
+<body>
+<nav class="nav-extended" style="background-color:whitesmoke;">
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo" style="color:black; margin-left:1%">포털사이트별 인기검색어</a>
+        <a href="/" data-target="mobile-demo" class="sidenav-trigger" style="color:black"><i
+                class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" id="nav">
+            <li><a href="http://www.naver.com" target="_blank" style="font-size:24px; color:black;">Naver</a></li>
+            <li><a href="http://www.daum.net" target="_blank" style="font-size:24px; color:black;">Daum</a></li>
+            <li><a href="http://www.google.com" target="_blank" style="font-size:24px; color:black;">Google</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="row" style="text-align: center">
+    <div class="col s4"><b style="font-size: 48px; color: green">NAVER</b>
+        <br>
+        <b>최근 인기 검색어</b>
+        <br><br>
+        <table>
+            <tbody>
+            {% for n in nr %}
+                <tr>
+                    <td>{{ n.rank_num }}위</td>
+                    <td>{{ n.rank_title }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col s4">
+        <span>
+        <b style="font-size: 48px; color: #5BA3DA">D</b>
+        <b style="font-size: 48px; color: #A1D11B">A</b>
+        <b style="font-size: 48px; color: #F3B311">U</b>
+        <b style="font-size: 48px; color: #ED6553">M</b>
+        </span>
+        <br>
+        <b>최근 인기 검색어</b>
+        <br><br>
+        <table>
+            <tbody>
+            {% for d in dr %}
+                <tr>
+                    <td>{{ d.rank_num }}위</td>
+                    <td>{{ d.rank_title }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col s4">
+        <span>
+        <b style="font-size: 48px; color: #4081ED">G</b>
+        <b style="font-size: 48px; color: #E44134">O</b>
+        <b style="font-size: 48px; color: #F4B706">O</b>
+        <b style="font-size: 48px; color: #4081ED">G</b>
+        <b style="font-size: 48px; color: #33A351">L</b>
+        <b style="font-size: 48px; color: #E44134">E</b>
+        </span>
+        <br>
+        <b>최근 인기 검색어</b>
+        <br><br>
+        <table>
+            <tbody>
+            {% for g in gr %}
+                <tr>
+                    <td>{{ g.rank_num }}위</td>
+                    <td>{{ g.rank_title }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="text-align: center">
+    <form action="{% url 'refresh' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="NEW DATA LOADING"
+               class="waves-effect waves-light btn"
+                onclick="alert('Refresh 작업이 진행중. . .')">
+    </form>
+</div>
+<br>
+</body>
+</html>
