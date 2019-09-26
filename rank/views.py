@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import NaverRank, DaumRank, GoogleRank
+import rank_crawling
 
 
 def index(request):
@@ -12,5 +13,7 @@ def index(request):
 
 def refresh(request):
     if request.method == 'POST':
-        import rank_crawling
+        rank_crawling.naver_trend()
+        rank_crawling.daum_trend()
+        rank_crawling.google_trend()
     return redirect('index')

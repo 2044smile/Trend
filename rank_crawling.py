@@ -1,4 +1,5 @@
 import time, os, requests
+from datetime import datetime
 from bs4 import BeautifulSoup
 from termcolor import *
 import colorama
@@ -26,27 +27,22 @@ def naver_trend():
         rank_title = soup.select( # 네이버 인기검색어의 이름 ex) 조국 . . . 1~20등 까지의 모든 title
             '#PM_ID_ct > div.header > div.section_navbar > div.area_hotkeyword.PM_CL_realtimeKeyword_base > div.ah_roll.PM_CL_realtimeKeyword_rolling_base > div > ul > li > a > span.ah_k'
         )
-        rank_num = soup.select( # 네이버 인기검색어의 순위 ex) 1  . . . 1~20까지의 모든 number
-            '#PM_ID_ct > div.header > div.section_navbar > div.area_hotkeyword.PM_CL_realtimeKeyword_base > div.ah_roll.PM_CL_realtimeKeyword_rolling_base > div > ul > li > a > span.ah_r'
-        )
+        # rank_num = soup.select( # 네이버 인기검색어의 순위 ex) 1  . . . 1~20까지의 모든 number
+        #     '#PM_ID_ct > div.header > div.section_navbar > div.area_hotkeyword.PM_CL_realtimeKeyword_base > div.ah_roll.PM_CL_realtimeKeyword_rolling_base > div > ul > li > a > span.ah_r'
+        # )
         for i in range(20): # 20위 까지 받기 위해서
-            # rank_data[i] = rank_title[i].text # rank_num[i].text.zfill(2):
             rank_data[i] = rank_title[i].text # rank_num[i].text.zfill(2):
-            cprint(str(rank_num[i].text.zfill(2)) + ' ' + rank_title[i].text, 'yellow') # ex) 01 조국 노란색으로 출력
+            # cprint(str(rank_num[i].text.zfill(2)) + ' ' + rank_title[i].text, 'yellow') # ex) 01 조국 노란색으로 출력
 
-        time.sleep(3) # 3초 딜레이
-        os.system('cls') # 화면 클리어
-        print('화면 클리어')
-        # return rank_data
+        # time.sleep(3) # 3초 딜레이
+        # os.system('cls') # 화면 클리어
+        # print('화면 클리어')
         NaverRank.objects.all().delete()
-        print('삭제완료')
         rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
         # for n, t in rank_data_dict.items():
         for n, t in rank_data_dict.items():
-            print(n, t)
             NaverRank(rank_num=n + 1, rank_title=t).save()
-        return print('완료')
-
+        return print('Naver 업로드 완료')
 
 
 # daum
@@ -61,51 +57,39 @@ def daum_trend():
         rank_title = soup.select(  # 네이버 인기검색어의 이름 ex) 조국 . . . 1~20등 까지의 모든 title
             '#mArticle > div.cmain_tmp > div.section_media > div.hot_issue.issue_mini > div.hotissue_mini > ol > li > div > div > span.txt_issue'
         )
-        rank_num = soup.select(  # 네이버 인기검색어의 순위 ex) 1  . . . 1~20까지의 모든 number
-            '#mArticle > div.cmain_tmp > div.section_media > div.hot_issue.issue_mini > div.hotissue_mini > ol > li > div > div > span.num_pctop > span'
+        # rank_num = soup.select(  # 네이버 인기검색어의 순위 ex) 1  . . . 1~20까지의 모든 number
+        #     '#mArticle > div.cmain_tmp > div.section_media > div.hot_issue.issue_mini > div.hotissue_mini > ol > li > div > div > span.num_pctop > span'
+        # )
+        rank_url = soup.select(
+            '#mArticle > div.cmain_tmp > div.section_media > div.hotissue_builtin > div.realtime_part > ol > li > div > div > span.txt_issue > a'
         )
         for i in range(10):  # 20위 까지 받기 위해서
             rank_data[i] = rank_title[i].text
-            cprint(rank_num[i].text.zfill(3) + ' ' + rank_title[i].text, 'yellow')  # 10 조국 노란색으로 출력
-        time.sleep(5)  # 5초 마다 반복
-        os.system('cls')  # 화면 클리어
-        return rank_data
+            # cprint(rank_num[i].text.zfill(3) + ' ' + rank_title[i].text, 'yellow')  # 10 조국 노란색으로 출력
+        # time.sleep(5)  # 5초 마다 반복
+        # os.system('cls')  # 화면 클리어
+        # print('화면 클리어')
+        DaumRank.objects.all().delete()
+        rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
+        # for n, t in rank_data_dict.items():
+        for n, t in rank_data_dict.items():
+            DaumRank(rank_num=n + 1, rank_title=t).save()
+        return print('Daum 업로드')
 
 
-if __name__ == '__main__':
-    DaumRank.objects.all().delete()
-    rank_data_dict = daum_trend()  # naver_trend 크롤링 돌아가는 함수 부분
+def google_trend():
+    req = requests.get('https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=US')
+    html = req.text
+    rank_data = {}
+    soup = BeautifulSoup(html, 'html.parser')
+    rank_title = soup.select(
+        'item > title'
+    )
+    for i in range(10):  # 20위 까지 받기 위해서
+        rank_data[i] = rank_title[i].text
+    GoogleRank.objects.all().delete()
+    rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
+    # for n, t in rank_data_dict.items():
     for n, t in rank_data_dict.items():
-        DaumRank(rank_num=n + 1, rank_title=t).save()
-    print('Daum 업로드 완료')
-
-
-# # google
-# def google_trend():
-#     from selenium import webdriver
-#     rank_data = {}
-#     # 다운 받은 chromdriver의 위치를 지정해준다.
-#     driver = webdriver.Chrome('C:\chromedriver.exe') # 정상작동
-#     driver.implicitly_wait(3)
-#     driver.get('https://trends.google.co.kr/trends/trendingsearches/realtime?geo=US&category=all')
-#     while True:
-#         rank_num = driver.find_elements_by_class_name("index")
-#         rank_title = driver.find_elements_by_class_name("title")
-#         for i in range(10):
-#             rank_data[i] = rank_title[i].text
-#             cprint(str(rank_num[i].text.zfill(2)) + ' ' + rank_title[i].text, 'yellow')
-#         time.sleep(5)  # 5초 마다 반복
-#         os.system('cls')  # 화면 클리어
-#         return rank_data
-#
-#
-# if __name__ == '__main__':
-#     GoogleRank.objects.all().delete()
-#     rank_data_dict = google_trend()
-#     for n, t in rank_data_dict.items():
-#         GoogleRank(rank_num=n + 1, rank_title=t).save()
-#     print('Google 업로드 완료')
-
-naver_trend()
-daum_trend()
-# google_trend()
+        GoogleRank(rank_num=n+1, rank_title=t).save()
+    return print('Google 업로드')
