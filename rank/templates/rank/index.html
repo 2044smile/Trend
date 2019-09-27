@@ -25,7 +25,8 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down" id="nav">
             <li><a href="http://www.naver.com" target="_blank" style="font-size:24px; color:black;">Naver</a></li>
             <li><a href="http://www.daum.net" target="_blank" style="font-size:24px; color:black;">Daum</a></li>
-            <li><a href="https://trends.google.co.kr/trends/trendingsearches/daily?geo=US" target="_blank" style="font-size:24px; color:black;">Google</a></li>
+            <li><a href="https://trends.google.co.kr/trends/trendingsearches/daily?geo=US" target="_blank"
+                   style="font-size:24px; color:black;">Google</a></li>
         </ul>
     </div>
 </nav>
@@ -36,7 +37,7 @@
         <br><br>
         <table>
             <tbody>
-            {% for n in nr %}
+            {% for n in nr %} {# Naver 순위와 내용 #}
                 <tr>
                     <td>{{ n.rank_num }}위</td>
                     <td>{{ n.rank_title }}</td>
@@ -57,7 +58,7 @@
         <br><br>
         <table>
             <tbody>
-            {% for d in dr %}
+            {% for d in dr %} {# Duam 순위와 내용 #}
                 <tr>
                     <td>{{ d.rank_num }}위</td>
                     <td>{{ d.rank_title }}</td>
@@ -80,7 +81,7 @@
         <br><br>
         <table>
             <tbody>
-            {% for g in gr %}
+            {% for g in gr %} {# Google 순위와 내용 #}
                 <tr>
                     <td>{{ g.rank_num }}위</td>
                     <td>{{ g.rank_title }}</td>
@@ -90,13 +91,40 @@
         </table>
     </div>
 </div>
-<div style="text-align: center">
+<div style="text-align: center"> {# 버튼 클릭 시 Naver, Daum, Google 업로드 #}
     <form action="{% url 'refresh' %}" method="POST">
         {% csrf_token %}
         <input type="submit" value="NEW DATA LOADING"
                class="waves-effect waves-light btn"
-                onclick="alert('Refresh 작업이 진행중. . .')">
+               onclick="alert('Refresh 작업이 진행중. . .')">
     </form>
+</div>
+<br>
+<div> {# footer #}
+    <footer class="page-footer" style="background-color:whitesmoke">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="black-text">Welcome</h5>
+                    <p class="black-text text-lighten-4">This site is my toy project.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="black-text">Contact me</h5>
+                    <ul>
+                        <li><a class="black-text text-lighten-3" href="https://github.com/2044smile">Github</a></li>
+                        <li><a class="black-text text-lighten-3" href="https://newbiecs.tistory.com/">Blog</a></li>
+                        <li><a class="black-text text-lighten-3" href="#!">2044smile@naver.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright" style="background-color:whitesmoke">
+            <div class="container" style="color:black">
+                © 2019 Copyright
+                <a class="black-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
 </div>
 <br>
 </body>
