@@ -14,34 +14,27 @@ django.setup()
 from rank.models import NaverRank, DaumRank, GoogleRank
 
 
-# daum
-def daum_trend():
-    req = requests.get('https://www.daum.net/')
+def google_trend():
+    req = requests.get('https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=US')
     html = req.text
-
     rank_data = {}
-    while True:
-        soup = BeautifulSoup(html, 'html.parser')
-        rank_title = soup.select(  # 네이버 인기검색어의 이름 ex) 조국 . . . 1~20등 까지의 모든 title
-            '#mArticle > div.cmain_tmp > div.section_media > div.hot_issue.issue_mini > div.hotissue_mini > ol > li > div > div > span.txt_issue'
-        )
-        rank_url = soup.select(
-            '#mArticle > div.cmain_tmp > div.section_media > div.hotissue_builtin > div.realtime_part > ol > li > div > div > span.txt_issue > a'
-        )
-        soup.find_all("a")
-        print(soup.a['href'])
+    soup = BeautifulSoup(html, 'html.parser')
+    rank_title = soup.select(
+        'item > title'
+    )
+    ranklink = soup.select(
+        'item > link'
+    )
+    for i in range(10):  # 20위 까지 받기 위해서
+        rank_data[i] = rank_title[i].text
 
-        for i in range(10):  # 20위 까지 받기 위해서
-            rank_data[i] = rank_title[i].text
-            # cprint(rank_num[i].text.zfill(3) + ' ' + rank_title[i].text, 'yellow')  # 10 조국 노란색으로 출력
-        # time.sleep(5)  # 5초 마다 반복
-        # os.system('cls')  # 화면 클리어
-        # print('화면 클리어')
-        DaumRank.objects.all().delete()
-        rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
-        # for n, t in rank_data_dict.items():
-        for n, t in rank_data_dict.items():
-            DaumRank(rank_num=n + 1, rank_title=t).save()
-        return print('Daum 업로드')
+    for a in soup.find_all('link'):
+        print(a) # <link/> 출력
+        print(a.text) # 빈 값 출력
+    GoogleRank.objects.all().delete()
+    rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
+    for n, t in rank_data_dict.items():
+        GoogleRank(rank_num=n+1, rank_title=t).save()
+    return print('Google 업로드')
 
-daum_trend()
+google_trend()

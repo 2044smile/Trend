@@ -40,7 +40,7 @@
             {% for n in nr %} {# Naver 순위와 내용 #}
                 <tr>
                     <td>{{ n.rank_num }}위</td>
-                    <td>{{ n.rank_title }}</td>
+                    <td><a href="{{ n.url }}" target="_blank">{{ n.rank_title }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -61,7 +61,7 @@
             {% for d in dr %} {# Duam 순위와 내용 #}
                 <tr>
                     <td>{{ d.rank_num }}위</td>
-                    <td>{{ d.rank_title }}</td>
+                    <td><a href="{{ d.url }}" target="_blank">{{ d.rank_title }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
