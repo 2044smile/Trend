@@ -11,13 +11,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {# alert 꾸미기 #}
     <style>
 
     </style>
     <title>index</title>
 </head>
 <body>
-<nav class="nav-extended" style="background-color:whitesmoke;">
+<nav class="nav-extended" style="background-color:#666666;">
     <div class="nav-wrapper">
         <a href="/" class="brand-logo" style="color:black; margin-left:1%">포털사이트별 인기검색어</a>
         <a href="/" data-target="mobile-demo" class="sidenav-trigger" style="color:black"><i
@@ -84,7 +85,7 @@
             {% for g in gr %} {# Google 순위와 내용 #}
                 <tr>
                     <td>{{ g.rank_num }}위</td>
-                    <td>{{ g.rank_title }}</td>
+                    <td><a href="{{ g.url }}" target="_blank">{{ g.rank_title }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -96,12 +97,17 @@
         {% csrf_token %}
         <input type="submit" value="NEW DATA LOADING"
                class="waves-effect waves-light btn"
-               onclick="alert('Refresh 작업이 진행중. . .')">
+               onclick='swal({
+  title: "NEW DATA LOADING!",
+  text: "You clicked the button! Waiting for 10 Second :)",
+  icon: "success",
+  button: "Aww yiss!",
+});'>
     </form>
 </div>
 <br>
 <div> {# footer #}
-    <footer class="page-footer" style="background-color:whitesmoke">
+    <footer class="page-footer" style="background-color:#666666">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -118,7 +124,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright" style="background-color:whitesmoke">
+        <div class="footer-copyright" style="background-color:#666666">
             <div class="container" style="color:black">
                 © 2019 Copyright
                 <a class="black-text text-lighten-4 right" href="#!">More Links</a>
@@ -126,6 +132,5 @@
         </div>
     </footer>
 </div>
-<br>
 </body>
 </html>

@@ -98,17 +98,27 @@ def google_trend():
     req = requests.get('https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=US')
     html = req.text
     rank_data = {}
-    soup = BeautifulSoup(html, 'html.parser')
-    rank_title = soup.select(
-        'item > title'
-    )
-    ranklink = soup.select(
-        'item > link'
-    )
-    for i in range(10):  # 20위 까지 받기 위해서
-        rank_data[i] = rank_title[i].text
-    GoogleRank.objects.all().delete()
-    rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
-    for n, t in rank_data_dict.items():
-        GoogleRank(rank_num=n+1, rank_title=t).save()
-    return print('Google 업로드')
+    while True:
+        soup = BeautifulSoup(html, 'html.parser')
+        rank_title = soup.select(
+            'item > title'
+        )
+        for i in range(10):  # 10위 까지 받기 위해서
+            rank_data[i] = rank_title[i].text
+        x = 0
+        v = 0
+        link = {}
+        ranklink = {}
+        for linkElement in soup.findAll('ht:news_item_url'):
+            x += 1
+            link[x] = linkElement.text
+
+        for y in range(1, 22, 2):
+            ranklink[v] = link[y]
+            v += 1
+        GoogleRank.objects.all().delete()
+        rank_data_dict = rank_data  # naver_trend 크롤링 돌아가는 함수 부분
+        for n, t in rank_data_dict.items():
+            GoogleRank(rank_num=n+1, rank_title=t, url=ranklink[n]).save()
+
+        return print('Google 업로드')
