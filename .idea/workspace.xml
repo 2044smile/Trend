@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ba76c6ab-4d1a-4e6c-a63e-07c2ed5d5009" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chromedriver.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rank/templates/rank/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rank/templates/rank/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rank_crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/rank_crawling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +105,8 @@
       <workItem from="1569469298821" duration="12756000" />
       <workItem from="1569482387792" duration="363000" />
       <workItem from="1569587333333" duration="1487000" />
-      <workItem from="1570418205692" duration="14814000" />
+      <workItem from="1570418205692" duration="15736000" />
+      <workItem from="1570514879559" duration="516000" />
     </task>
     <task id="LOCAL-00001" summary="naver, daum crawling complated">
       <created>1569141401460</created>
@@ -150,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570427382873</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Google, alert 수정">
+      <created>1570433469689</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1570433469689</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +183,7 @@
     <MESSAGE value="Naver, Daum, Google 정상작동" />
     <MESSAGE value="Footer" />
     <MESSAGE value="Naver, Daum 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="Naver, Daum 완료" />
+    <MESSAGE value="Google, alert 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="Google, alert 수정" />
   </component>
 </project>
