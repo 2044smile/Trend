@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba76c6ab-4d1a-4e6c-a63e-07c2ed5d5009" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chromedriver.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rank_crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/rank_crawling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +107,8 @@
       <workItem from="1569482387792" duration="363000" />
       <workItem from="1569587333333" duration="1487000" />
       <workItem from="1570418205692" duration="15736000" />
-      <workItem from="1570514879559" duration="516000" />
+      <workItem from="1570514879559" duration="2268000" />
+      <workItem from="1570628013416" duration="690000" />
     </task>
     <task id="LOCAL-00001" summary="naver, daum crawling complated">
       <created>1569141401460</created>
@@ -157,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570433469689</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="배포 전 마지막 Save, 주석추가 코드정리">
+      <created>1570515622272</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1570515622272</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +193,7 @@
     <MESSAGE value="Footer" />
     <MESSAGE value="Naver, Daum 완료" />
     <MESSAGE value="Google, alert 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="Google, alert 수정" />
+    <MESSAGE value="배포 전 마지막 Save, 주석추가 코드정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="배포 전 마지막 Save, 주석추가 코드정리" />
   </component>
 </project>

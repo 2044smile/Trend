@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+__pycache__/
+rank/__pycache__/urls.cpython-37.pyc
+rank/__pycache__/views.cpython-37.pyc
+rank/migrations/__pycache__/0004_auto_20190925_1715.cpython-37.pyc
+static/
+templates/
