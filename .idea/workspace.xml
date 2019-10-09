@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba76c6ab-4d1a-4e6c-a63e-07c2ed5d5009" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.config/Trend.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.config/uwsgi.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.config/uwsgi.service" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +107,7 @@
       <workItem from="1569587333333" duration="1487000" />
       <workItem from="1570418205692" duration="15736000" />
       <workItem from="1570514879559" duration="2268000" />
-      <workItem from="1570628013416" duration="690000" />
+      <workItem from="1570628013416" duration="1231000" />
     </task>
     <task id="LOCAL-00001" summary="naver, daum crawling complated">
       <created>1569141401460</created>
@@ -166,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570515622272</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="배포 git ingnore, settings">
+      <created>1570628720469</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1570628720469</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +200,7 @@
     <MESSAGE value="Naver, Daum 완료" />
     <MESSAGE value="Google, alert 수정" />
     <MESSAGE value="배포 전 마지막 Save, 주석추가 코드정리" />
-    <option name="LAST_COMMIT_MESSAGE" value="배포 전 마지막 Save, 주석추가 코드정리" />
+    <MESSAGE value="배포 git ingnore, settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="배포 git ingnore, settings" />
   </component>
 </project>
