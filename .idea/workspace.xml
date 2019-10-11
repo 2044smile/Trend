@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba76c6ab-4d1a-4e6c-a63e-07c2ed5d5009" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.config/Trend.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/uwsgi.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/uwsgi.service" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rank/templates/rank/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rank/templates/rank/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +108,8 @@
       <workItem from="1570514879559" duration="2268000" />
       <workItem from="1570628013416" duration="3859000" />
       <workItem from="1570682082005" duration="126000" />
-      <workItem from="1570774040458" duration="1161000" />
+      <workItem from="1570774040458" duration="2705000" />
+      <workItem from="1570786699947" duration="2769000" />
     </task>
     <task id="LOCAL-00001" summary="naver, daum crawling complated">
       <created>1569141401460</created>
@@ -181,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570629411502</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="두 번 째 시도">
+      <created>1570775937039</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1570775937039</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +217,7 @@
     <MESSAGE value="Google, alert 수정" />
     <MESSAGE value="배포 전 마지막 Save, 주석추가 코드정리" />
     <MESSAGE value="배포 git ingnore, settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="배포 git ingnore, settings" />
+    <MESSAGE value="두 번 째 시도" />
+    <option name="LAST_COMMIT_MESSAGE" value="두 번 째 시도" />
   </component>
 </project>
