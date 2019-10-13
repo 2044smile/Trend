@@ -11,16 +11,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Titillium+Web&display=swap" rel="stylesheet"> {# 구글 폰트 #}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {# alert 꾸미기 #}
     <style>
-
+        #nav {
+            font-family: 'Titillium Web', sans-serif;
+        }
+        #title {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
     </style>
     <title>인기검색어</title>
 </head>
 <body>
 <nav class="nav-extended" style="background-color:#666666;">
     <div class="nav-wrapper">
-        <a href="/" class="brand-logo" style="color:black; margin-left:1%">포털사이트별 인기검색어</a>
+        <a href="/" class="brand-logo" style="color:black; margin-left:1%; font-size:1rem">포털사이트별 인기검색어</a>
         <a href="/" data-target="mobile-demo" class="sidenav-trigger" style="color:black"><i
                 class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down" id="nav">
@@ -34,12 +40,12 @@
 <div class="row" style="text-align: center">
     <div class="col s12 m6 l4 x4"><b style="font-size: 48px; color: green">NAVER</b>
         <br>
-        <b>최근 인기 검색어</b>
+        <b id="title">최근 인기 검색어</b>
         <br><br>
         <table>
             <tbody>
             {% for n in nr %} {# Naver 순위와 내용 #}
-                <tr>
+                <tr id="title">
                     <td>{{ n.rank_num }}위</td>
                     <td><a href="{{ n.url }}" target="_blank">{{ n.rank_title }}</a></td>
                 </tr>
@@ -55,12 +61,12 @@
         <b style="font-size: 48px; color: #ED6553">M</b>
         </span>
         <br>
-        <b>최근 인기 검색어</b>
+        <b id="title">최근 인기 검색어</b>
         <br><br>
         <table>
             <tbody>
             {% for d in dr %} {# Duam 순위와 내용 #}
-                <tr>
+                <tr id="title">
                     <td>{{ d.rank_num }}위</td>
                     <td><a href="{{ d.url }}" target="_blank">{{ d.rank_title }}</a></td>
                 </tr>
@@ -78,12 +84,12 @@
         <b style="font-size: 48px; color: #E44134">E</b>
         </span>
         <br>
-        <b>최근 인기 검색어</b>
+        <b id="title">최근 인기 검색어</b>
         <br><br>
         <table>
             <tbody>
             {% for g in gr %} {# Google 순위와 내용 #}
-                <tr>
+                <tr id="title">
                     <td>{{ g.rank_num }}위</td>
                     <td><a href="{{ g.url }}" target="_blank">{{ g.rank_title }}</a></td>
                 </tr>
@@ -99,7 +105,7 @@
                class="waves-effect waves-light btn"
                onclick='swal({
   title: "NEW DATA LOADING!",
-  text: "You clicked the button! Waiting for 10 Second :)",
+  text: "You clicked the button! Waiting for 3 Second :)",
   icon: "success",
   button: "Aww yiss!",
 });'>
